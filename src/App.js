@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Form from "./components/Form";
+import TodoList from "./components/TodoList";
 
 function App() {
+  const [inputText, setInputText] = useState("");
+  const [todoList, setTodoList] = useState([]);
+  const [todoListCompleted, setTodoListCompleted] = useState([]);
+  const [sort, setSort] = useState("all");
+
+  useEffect(() => {
+    switch (sort) {
+      case "all":
+        break;
+
+      case "completed":
+        break;
+
+      case "uncompleted":
+        break;
+
+      default:
+        break;
+    }
+  }, [sort]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header>Simple todo</header>
+      <Form
+        setInputText={setInputText}
+        inputText={inputText}
+        setTodoList={setTodoList}
+        todoList={todoList}
+        setSort={setSort}
+      />
+      <TodoList
+        todoList={todoList}
+        setTodoList={setTodoList}
+        todoListCompleted={todoListCompleted}
+        setTodoListCompleted={setTodoListCompleted}
+      />
     </div>
   );
 }
