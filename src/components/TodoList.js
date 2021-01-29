@@ -4,18 +4,15 @@ import Todo from "./Todo";
 const TodoList = ({
   todoList,
   setTodoList,
-  todoListCompleted,
-  setTodoListCompleted,
+  sortTodoList,
 }) => {
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        {todoList.map((todo) => (
+        {sortTodoList.map((todo) => (
           <Todo
             key={todo.id}
             text={todo.text}
-            setTodoListCompleted={setTodoListCompleted}
-            todoListCompleted={todoListCompleted}
             setTodoList={setTodoList}
             todoList={todoList}
             todo={todo}

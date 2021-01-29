@@ -6,24 +6,30 @@ import TodoList from "./components/TodoList";
 function App() {
   const [inputText, setInputText] = useState("");
   const [todoList, setTodoList] = useState([]);
-  const [todoListCompleted, setTodoListCompleted] = useState([]);
+  const [sortTodoList, setSortTodoList] = useState([]);
   const [sort, setSort] = useState("all");
-
+  
   useEffect(() => {
     switch (sort) {
       case "all":
-        break;
+        const all = todoList
+        setSortTodoList(all);
+      break;
 
       case "completed":
+        const completed = todoList.filter(todo => todo.completed)
+        setSortTodoList(completed);
         break;
 
       case "uncompleted":
+        const uncompleted = todoList.filter(todo => !todo.completed)
+        setSortTodoList(uncompleted)
         break;
 
       default:
         break;
     }
-  }, [sort]);
+  }, [sort, todoList]);
 
   return (
     <div className="App">
@@ -38,8 +44,7 @@ function App() {
       <TodoList
         todoList={todoList}
         setTodoList={setTodoList}
-        todoListCompleted={todoListCompleted}
-        setTodoListCompleted={setTodoListCompleted}
+        sortTodoList={sortTodoList}
       />
     </div>
   );

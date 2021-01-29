@@ -2,20 +2,12 @@ import React from "react";
 
 const Todo = ({
   text,
-  setTodoListCompleted,
-  todoListCompleted,
   setTodoList,
   todoList,
   todo,
 }) => {
   const completedHandler = (e) => {
     e.preventDefault();
-    const todoCompleted = { ...todo, completed: !todo.completed };
-    setTodoListCompleted([
-      ...todoListCompleted.filter((el) => el.id !== todoCompleted.id),
-      todoCompleted,
-    ]);
-
     setTodoList(
       todoList.map((el) => {
         if (el.id === todo.id) {
@@ -30,7 +22,6 @@ const Todo = ({
   const trashHandler = (e) => {
     e.preventDefault();
     const trash = (array) => array.filter((el) => el.id !== todo.id);
-    setTodoListCompleted(trash(todoListCompleted));
     setTodoList(trash(todoList));
   };
 
